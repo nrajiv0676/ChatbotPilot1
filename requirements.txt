@@ -23,8 +23,6 @@ nltk==3.6.2
 numpy==1.20.3
 packaging==20.9
 pathy==0.5.2
-pip==19.0.3
-plac==0.9.6
 pydantic==1.7.4
 pyparsing==2.4.7
 python-dateutil==2.7.5
@@ -34,8 +32,6 @@ requests==2.25.1
 setuptools==40.8.0
 six==1.16.0
 smart-open==3.0.0
-spacy==2.1.9
-spacy-legacy==3.0.6
 srsly==1.0.5
 tqdm==4.61.1
 typer==0.3.2
