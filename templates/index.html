@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<table style="height: 42px; width: 99.7925%; border-collapse: collapse; background-color: gray;" border="0">
+<tbody>
+<tr style="height: 42px;">
+<td style="width: 100%; height: 42px;"><h1><span style="color: #000080;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;Rajiv's AI Chatbot</strong></span></h1></p></td>
+</tr>
+</tbody>
+</table>
+<table style="height: 612px; width: 87.9449%; border-collapse: collapse;" border="0">
+<tbody>
+<tr style="height: 64px;">
+<td style="width: 5.24379%; height: 64px; background-color: lightsteelblue;">&nbsp;</td>
+<td style="width: 94.7562%; height: 64px; text-align: left; vertical-align: top;">
+
+<div>
+<div id="chatbox">
+<p class="botText">&nbsp; &nbsp;Hi! I am your Chatterbot.</p>
+</div>
+<div id="userInput"><input id="textInput" name="msg" type="text" placeholder="Message" /> <input id="buttonInput" type="submit" value="Send" /> &nbsp;&nbsp;</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<script>
+function getBotResponse(){
+var rawText = $("#textInput").val();
+var userHtml = '<p class = "userText"><span>' + rawText + '</span></p>';
+$("#textInput").val("");
+$("#chatbox").append(userHtml);
+document.getElementById('userInput').scrollIntoView({block:'start',behaviour:'smooth'});
+$.get("/get", {msg:rawText }).done(function(data) {
+if (data.startsWith("https:")){
+    var botHtml = '<p class ="botText"><span><a href="' + data +'" target="_blank">'+ data + '</a></span></p>';
+    window.open(data, '_blank');
+} else if(data.startsWith("C:")){
+    var botHtml = '<p class ="botText"><span><a href=file:///"' + data +'" >'+ data + '</a></span></p>';
+
+}
+else {
+    var botHtml = '<p class ="botText"><span>>'+ data + '</span></p>';
+}
+$("#chatbox").append(botHtml);
+document.getElementById('userInput').scrollIntoView({block : 'start',behaviour:'smooth'});
+});
+}
+$("#textInput").keypress(function(e) {
+if(e.which == 13) {
+getBotResponse();
+}
+});
+$("#buttonInput").click(function() {
+getBotResponse();
+})
+</script>
+</div>
+</body>
+</html>
