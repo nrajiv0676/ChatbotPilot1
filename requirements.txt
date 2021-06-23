@@ -6,3 +6,4 @@ MarkupSafe==2.0.1
 Werkzeug==2.0.1
 ChatterBot==1.0.1
 PyYAML==3.13
+SQLAlchemy==1.2.19
